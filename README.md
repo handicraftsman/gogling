@@ -1,3 +1,6 @@
+[![Dev Branch](https://img.shields.io/travis/handicraftsman/gogling/master.svg?label=Master)]
+[![Dev Branch](https://img.shields.io/travis/handicraftsman/gogling/development.svg?label=Development)]
+
 # Gogling - installation
 ## Step 0: install Go
 You can skip this step if you already have Go<br/>
