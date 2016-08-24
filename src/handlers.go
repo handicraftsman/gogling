@@ -41,8 +41,7 @@ func hlErrSend(iWrt http.ResponseWriter, iData string, iCode int) {
 
 // Error-Handler
 func hlErr(iWrt http.ResponseWriter, iReq *http.Request, iGet string, iCode int) {
-	lPath := "err/" + strconv.Itoa(iCode) + ".html"            // Get correct path
-	log.Println("# Net: Errored. Sending", lPath, "to client") // Notify
+	lPath := "err/" + strconv.Itoa(iCode) + ".html" // Get correct path
 
 	lData, err := ioutil.ReadFile(lPath) // Get error file (if any)
 	var lOut string
@@ -52,8 +51,8 @@ func hlErr(iWrt http.ResponseWriter, iReq *http.Request, iGet string, iCode int)
 		lOut = "Gogling says: \"404 page not found\""
 	}
 
-	hlErrSend(iWrt, lOut, http.StatusNotFound)    // Send data
-	log.Printf("# Net: %d: data/%s", iCode, iGet) // Send notification into console
+	hlErrSend(iWrt, lOut, http.StatusNotFound)                   // Send data
+	log.Printf("\033[31m# Net: %d: data/%s\033[0m", iCode, iGet) // Send notification into console
 }
 
 // Error-Scanner
@@ -78,7 +77,7 @@ func hGoglingInfo(iWrt http.ResponseWriter, iReq *http.Request) {
 		fmt.Fprintf(iWrt, "Version: %s\n", sVer)
 		fmt.Fprintf(iWrt, "</p>")
 	} else { // HEY!
-		log.Println("# Net: Somebody tried to access info page, but it's disabled in config")
+		log.Println("\033[31m# Net: Somebody tried to access info page, but it's disabled in config\033[0m")
 		fmt.Fprintf(iWrt, "<h1><strong>Sorry, this output is disabled in gogling's config</strong></h1>")
 	}
 }
@@ -98,8 +97,8 @@ func hMain(iWrt http.ResponseWriter, iReq *http.Request) {
 		iWrt.Header().Set("Content-Type", "text/html; charset=utf-8")
 		iWrt.Header().Set("X-Content-Type-Options", "nosniff")
 
-		fmt.Fprintf(iWrt, string(lData))  // Send data
-		log.Println("# Net: Sent:", lGet) // Send notification into console
+		fmt.Fprintf(iWrt, string(lData))                     // Send data
+		log.Println("\033[32m# Net: Sent:", lGet, "\033[0m") // Send notification into console
 	}
 }
 
