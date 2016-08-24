@@ -20,14 +20,14 @@ package main
 
 import "log"
 
-var sName = "gogling"
+var sName = "Gogling"
 var sVer = "0.0.1"
 var sWebInfoEnabled = true
 var sDone = make(chan bool)
 
 // Main Function, sir!
 func main() {
-	log.Printf("# Main: It's %s v%s", sName, sVer)
+	log.Printf("# Main: It's %s v%s", sName, sVer) // Output info about our Gogling
 	log.Print("# Main: Started")
 
 	go nMain() // Start network thread
