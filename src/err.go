@@ -1,6 +1,6 @@
 /* err.go
  *
- * Copyright (C) 2015-2016 Nickolay Ilyushin <nickolay02@inbox.ru>
+ * Copyright (C) 2016 Nickolay Ilyushin <nickolay02@inbox.ru>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,16 +18,20 @@
 
 package main
 
-import "log"
+import (
+	"log"
+	"os"
+)
 
-func checkErr(iErr error) {
+func checkErr(iPart string, iErr error) {
 	if iErr != nil {
-		log.Fatal(iErr)
+		log.Printf("\033[31m# %s: %s \033[0m\n", iPart, iErr.Error())
+		os.Exit(1)
 	}
 }
 
-func checkWarn(iErr error) {
+func checkWarn(iPart string, iErr error) {
 	if iErr != nil {
-		log.Printf(iErr.Error())
+		log.Printf("\033[33m# %s: %s \033[0m\n", iPart, iErr.Error())
 	}
 }

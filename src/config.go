@@ -1,4 +1,4 @@
-/* main.go
+/* config.go
  *
  * Copyright (C) 2016 Nickolay Ilyushin <nickolay02@inbox.ru>
  *
@@ -18,25 +18,25 @@
 
 package main
 
-import "log"
+import (
+	"encoding/json"
+	"io/ioutil"
+	"log"
+)
 
-var sName = "Gogling"
-var sVer = "0.0.1"
-var sDone = make(chan bool)
+var sConf = map[string]string{}
 
-var sWebInfoEnabled = true
+func cMain() {
+	log.Println("# Conf: Reading config file")
 
-// Main Function, sir!
-func main() {
-	log.Printf("# Main: It's %s v%s", sName, sVer) // Output info about our Gogling
-	log.Print("# Main: Started")
+	lData, err := ioutil.ReadFile("conf.json") // Read our config.
+	checkErr("Conf", err)
 
-	go cMain() // Load config in separate thread
-	<-sDone    // Wait until config loads
+	log.Println("# Conf: Parsing JSON")
 
-	sDone = make(chan bool) // To not exit before net-thread finishes
-	go nMain()              // Start network thread
+	err = json.Unmarshal(lData, &sConf) // Parse JSON
+	checkErr("Conf", err)
 
-	<-sDone // Send true here to exit
-	log.Print("# Main: Exiting")
+	log.Println("# Conf: Finished.") // Done!
+	sDone <- true
 }
