@@ -69,7 +69,7 @@ func hlErrScan(iWrt http.ResponseWriter, iReq *http.Request, iGet string, iErr e
 
 // Gogling-info handler
 func hGoglingInfo(iWrt http.ResponseWriter, iReq *http.Request) {
-	if sWebInfoEnabled { // Is this allowed?
+	if sConf["webInfoEnabled"] == "true" { // Is this allowed?
 		// Send info
 		fmt.Fprintf(iWrt, "<style>body{padding-left:16px}p{padding-left:32px}</style>")
 		fmt.Fprintf(iWrt, "<h1>Gogling info:</h1>\n")

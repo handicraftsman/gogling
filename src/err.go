@@ -18,16 +18,20 @@
 
 package main
 
-import "log"
+import (
+	"log"
+	"os"
+)
 
-func checkErr(iErr error) {
+func checkErr(iPart string, iErr error) {
 	if iErr != nil {
-		log.Fatal(iErr)
+		log.Printf("\033[31m# %s: %s \033[0m\n", iPart, iErr.Error())
+		os.Exit(1)
 	}
 }
 
-func checkWarn(iErr error) {
+func checkWarn(iPart string, iErr error) {
 	if iErr != nil {
-		log.Printf(iErr.Error())
+		log.Printf("\033[33m# %s: %s \033[0m\n", iPart, iErr.Error())
 	}
 }
