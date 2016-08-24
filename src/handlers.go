@@ -104,7 +104,7 @@ func hMain(iWrt http.ResponseWriter, iReq *http.Request) {
 
 // Network thread
 func nMain() {
-	http.HandleFunc("/", hMain)
-	http.HandleFunc("/hGoglingInfo", hGoglingInfo)
-	http.ListenAndServe(":8080", nil)
+	http.HandleFunc("/", hMain)                             // Add file access to it
+	http.HandleFunc("/hGoglingInfo", hGoglingInfo)          // Gogling info. Will show if enabled in config
+	http.ListenAndServe(sConf["ip"]+":"+sConf["port"], nil) // Listen
 }
