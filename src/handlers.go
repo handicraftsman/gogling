@@ -1,6 +1,6 @@
 /* handlers.go
  *
- * Copyright (C) 2015-2016 Nickolay Ilyushin <nickolay02@inbox.ru>
+ * Copyright (C) 2016 Nickolay Ilyushin <nickolay02@inbox.ru>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,17 +52,19 @@ func hlErr(iWrt http.ResponseWriter, iReq *http.Request, iGet string, iCode int)
 		lOut = "Gogling says: \"404 page not found\""
 	}
 
-	hlErrSend(iWrt, lOut, http.StatusNotFound) // Send data
-	log.Printf("# Net: %d: %s", iCode, iGet)   // Send notification into console
+	hlErrSend(iWrt, lOut, http.StatusNotFound)    // Send data
+	log.Printf("# Net: %d: data/%s", iCode, iGet) // Send notification into console
 }
 
 // Error-Scanner
 func hlErrScan(iWrt http.ResponseWriter, iReq *http.Request, iGet string, iErr error) bool {
-	if os.IsNotExist(iErr) { // Handle 404
+	if os.IsNotExist(iErr) { // Handle 404 (not found)
 		hlErr(iWrt, iReq, iGet, 404)
 		return true
-	} //else if os.isPermission(err) {
-	//}
+	} else if os.IsPermission(iErr) { // Handle 403 (access denied)
+		hlErr(iWrt, iReq, iGet, 403)
+		return true
+	}
 	return false
 }
 

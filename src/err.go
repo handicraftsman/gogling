@@ -1,6 +1,6 @@
 /* err.go
  *
- * Copyright (C) 2015-2016 Nickolay Ilyushin <nickolay02@inbox.ru>
+ * Copyright (C) 2016 Nickolay Ilyushin <nickolay02@inbox.ru>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
