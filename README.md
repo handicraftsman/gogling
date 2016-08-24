@@ -1,5 +1,5 @@
-![Dev Branch](https://img.shields.io/travis/handicraftsman/gogling/master.svg?label=Master)
-![Dev Branch](https://img.shields.io/travis/handicraftsman/gogling/development.svg?label=Development)
+<a href="https://travis-ci.org/handicraftsman/gogling">![Master](https://img.shields.io/travis/handicraftsman/gogling/master.svg?label=Master)</a>
+<a href="https://travis-ci.org/handicraftsman/gogling"![Development](https://img.shields.io/travis/handicraftsman/gogling/development.svg?label=Development)</a>
 
 # Gogling - installation
 ## Step 0: install Go
