@@ -1,4 +1,4 @@
-/* main.go
+/* tests.go
  *
  * Copyright (C) 2016 Nickolay Ilyushin <nickolay02@inbox.ru>
  *
@@ -19,31 +19,31 @@
 package main
 
 import (
-	"flag"
 	"log"
+	"os"
 )
 
-var sName = "Gogling"
-var sVer = "0.0.1"
-var sDone = make(chan bool)
-var sTestName *string
-var sAllTests bool
+func tTestNotify(iName string) {
+	log.Printf("# Test: running test \"%s\"", iName)
+}
 
-// Main Function, sir!
-func main() {
-	sTestName = flag.String("test", "none", "Test selector") // To allow running tests
-	flag.Parse()                                             // Parse flags
-	tRunTests()
+func tRunTests() {
+	if *sTestName != "none" { // If we are want to test preprocessor
+		switch *sTestName {
+		case "all": // If we want to run ALL tests
+			log.Println("# Test: Running all tests")
+			t0echo()
 
-	log.Printf("# Main: It's %s v%s", sName, sVer) // Output info about our Gogling
-	log.Print("# Main: Started")
+		case "0_echo": // Test "echo" func
+			t0echo()
 
-	go cMain() // Load config in separate thread
-	<-sDone    // Wait until config loads
+		} // End of switch
 
-	sDone = make(chan bool) // To not exit before net-thread finishes
-	go nMain()              // Start network thread
+		os.Exit(0) // Exit successfully
+	}
+}
 
-	<-sDone // Send true here to exit
-	log.Print("# Main: Exiting")
+func t0echo() { // Test "echo" func
+	tTestNotify("0_echo")
+	log.Println("# Test: But there's no preprocessor!")
 }
