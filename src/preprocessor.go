@@ -32,7 +32,7 @@ func pProcess(iWrt http.ResponseWriter, iData string, iPName string) {
 	}
 
 	err = lTmpl.Execute(iWrt, template.HTML("")) // Execute template
-	errC := checkParseErr("Preprocessor", err)
+	errC = checkParseErr("Preprocessor", err)
 	if errC {
 		hlErr(iWrt, nil, iPName, 500)
 	}
