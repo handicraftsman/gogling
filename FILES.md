@@ -10,6 +10,6 @@ Gogling's sources
   <li>err.go - error handling</li>
   <li>handlers.go - network handlers</li>
   <li>config.go - config reader</li>
-  <li>pre_main.go - preprocessor's main file</li>
+  <li>preprocessor.go - preprocessor</li>
   <li>tests.go - for testing preprocessor</li>
 </ul>

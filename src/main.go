@@ -33,7 +33,7 @@ var sAllTests bool
 func main() {
 	sTestName = flag.String("test", "none", "Test selector") // To allow running tests
 	flag.Parse()                                             // Parse flags
-	tRunTests()
+	//tRunTests()
 
 	log.Printf("# Main: It's %s v%s", sName, sVer) // Output info about our Gogling
 	log.Print("# Main: Started")

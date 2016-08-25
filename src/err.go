@@ -35,3 +35,11 @@ func checkWarn(iPart string, iErr error) {
 		log.Printf("\033[33m# %s: %s \033[0m\n", iPart, iErr.Error())
 	}
 }
+
+func checkParseErr(iPart string, iErr error) bool {
+	if iErr != nil {
+		log.Printf("\033[33m# %s: %s \033[0m\n", iPart, iErr.Error())
+		return true
+	}
+	return false
+}

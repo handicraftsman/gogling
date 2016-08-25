@@ -18,6 +18,7 @@
 
 package main
 
+/** Not Yet Implemented
 import (
 	"log"
 	"os"
@@ -25,6 +26,9 @@ import (
 
 func tTestNotify(iName string) {
 	log.Printf("# Test: running test \"%s\"", iName)
+}
+func tTestFail(iName string) {
+	log.Printf("# Test: test \"%s\" just failed!", iName)
 }
 
 func tRunTests() {
@@ -45,5 +49,9 @@ func tRunTests() {
 
 func t0echo() { // Test "echo" func
 	tTestNotify("0_echo")
-	log.Println("# Test: But there's no preprocessor!")
+	//if preMain("<?! echo('test') !?>") != "test" { // Run test. If failed - crash
+	//	tTestFail("0_echo")
+	//	os.Exit(1)
+	//}
 }
+**/
