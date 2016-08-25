@@ -1,4 +1,4 @@
-/* err.go
+/* pre_main.go
  *
  * Copyright (C) 2016 Nickolay Ilyushin <nickolay02@inbox.ru>
  *
@@ -19,27 +19,29 @@
 package main
 
 import (
-	"log"
-	"os"
+	"html/template"
+	"net/http"
 )
 
-func checkErr(iPart string, iErr error) {
-	if iErr != nil {
-		log.Printf("\033[31m# %s: %s \033[0m\n", iPart, iErr.Error())
-		os.Exit(1)
+// Returns output to iWrt, input: iData, iPName
+func pProcess(iWrt http.ResponseWriter, iData string, iPName string) {
+	lTmpl, err := template.New(iPName).Parse(iData) // Parse input
+	errC := checkParseErr("Preprocessor", err)
+	if errC {
+		hlErr(iWrt, nil, iPName, 500)
 	}
+
+	err = lTmpl.Execute(iWrt, template.HTML("")) // Execute template
+	errC = checkParseErr("Preprocessor", err)
+	if errC {
+		hlErr(iWrt, nil, iPName, 500)
+	}
+
+	// Done!
 }
 
-func checkWarn(iPart string, iErr error) {
-	if iErr != nil {
-		log.Printf("\033[33m# %s: %s \033[0m\n", iPart, iErr.Error())
-	}
-}
-
-func checkParseErr(iPart string, iErr error) bool {
-	if iErr != nil {
-		log.Printf("\033[33m# %s: %s \033[0m\n", iPart, iErr.Error())
-		return true
-	}
-	return false
-}
+/* Why so short?
+ *
+ * Go has it's own preprocessor in 'text/template' and 'html/template' packages
+ * We are using them here
+ */

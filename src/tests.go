@@ -1,4 +1,4 @@
-/* err.go
+/* tests.go
  *
  * Copyright (C) 2016 Nickolay Ilyushin <nickolay02@inbox.ru>
  *
@@ -18,28 +18,40 @@
 
 package main
 
+/** Not Yet Implemented
 import (
 	"log"
 	"os"
 )
 
-func checkErr(iPart string, iErr error) {
-	if iErr != nil {
-		log.Printf("\033[31m# %s: %s \033[0m\n", iPart, iErr.Error())
-		os.Exit(1)
+func tTestNotify(iName string) {
+	log.Printf("# Test: running test \"%s\"", iName)
+}
+func tTestFail(iName string) {
+	log.Printf("# Test: test \"%s\" just failed!", iName)
+}
+
+func tRunTests() {
+	if *sTestName != "none" { // If we are want to test preprocessor
+		switch *sTestName {
+		case "all": // If we want to run ALL tests
+			log.Println("# Test: Running all tests")
+			t0echo()
+
+		case "0_echo": // Test "echo" func
+			t0echo()
+
+		} // End of switch
+
+		os.Exit(0) // Exit successfully
 	}
 }
 
-func checkWarn(iPart string, iErr error) {
-	if iErr != nil {
-		log.Printf("\033[33m# %s: %s \033[0m\n", iPart, iErr.Error())
-	}
+func t0echo() { // Test "echo" func
+	tTestNotify("0_echo")
+	//if preMain("<?! echo('test') !?>") != "test" { // Run test. If failed - crash
+	//	tTestFail("0_echo")
+	//	os.Exit(1)
+	//}
 }
-
-func checkParseErr(iPart string, iErr error) bool {
-	if iErr != nil {
-		log.Printf("\033[33m# %s: %s \033[0m\n", iPart, iErr.Error())
-		return true
-	}
-	return false
-}
+**/

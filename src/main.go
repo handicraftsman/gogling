@@ -18,16 +18,23 @@
 
 package main
 
-import "log"
+import (
+	"flag"
+	"log"
+)
 
 var sName = "Gogling"
 var sVer = "0.0.1"
 var sDone = make(chan bool)
-
-var sWebInfoEnabled = true
+var sTestName *string
+var sAllTests bool
 
 // Main Function, sir!
 func main() {
+	sTestName = flag.String("test", "none", "Test selector") // To allow running tests
+	flag.Parse()                                             // Parse flags
+	//tRunTests()
+
 	log.Printf("# Main: It's %s v%s", sName, sVer) // Output info about our Gogling
 	log.Print("# Main: Started")
 

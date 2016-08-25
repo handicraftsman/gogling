@@ -48,10 +48,10 @@ func hlErr(iWrt http.ResponseWriter, iReq *http.Request, iGet string, iCode int)
 	if !os.IsNotExist(err) { // Check error file for existance
 		lOut = string(lData)
 	} else { // If there's no such file - send default text
-		lOut = "Gogling says: \"404 page not found\""
+		lOut = "Gogling says: \"" + strconv.Itoa(iCode) + "\""
 	}
 
-	hlErrSend(iWrt, lOut, http.StatusNotFound)                   // Send data
+	hlErrSend(iWrt, lOut, iCode)                                 // Send data
 	log.Printf("\033[31m# Net: %d: data/%s\033[0m", iCode, iGet) // Send notification into console
 }
 
@@ -97,7 +97,8 @@ func hMain(iWrt http.ResponseWriter, iReq *http.Request) {
 		iWrt.Header().Set("Content-Type", "text/html; charset=utf-8")
 		iWrt.Header().Set("X-Content-Type-Options", "nosniff")
 
-		fmt.Fprintf(iWrt, string(lData))                     // Send data
+		pProcess(iWrt, string(lData), lGet) // Send data
+		//fmt.Fprintf(iWrt, string(lData))                     // Send data
 		log.Println("\033[32m# Net: Sent:", lGet, "\033[0m") // Send notification into console
 	}
 }
