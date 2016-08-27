@@ -12,4 +12,5 @@ Gogling's sources
   <li>config.go - config reader</li>
   <li>preprocessor.go - preprocessor</li>
   <li>tests.go - for testing preprocessor</li>
+  <li>file.go - for file operations</li>
 </ul>

@@ -19,22 +19,29 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 )
 
 // Returns output to iWrt, input: iData, iPName
 func pProcess(iWrt http.ResponseWriter, iData string, iPName string) {
-	lTmpl, err := template.New(iPName).Parse(iData) // Parse input
-	errC := checkParseErr("Preprocessor", err)
-	if errC {
-		hlErr(iWrt, nil, iPName, 500)
-	}
+	lFile := fGetInfo(iPName)
 
-	err = lTmpl.Execute(iWrt, template.HTML("")) // Execute template
-	errC = checkParseErr("Preprocessor", err)
-	if errC {
-		hlErr(iWrt, nil, iPName, 500)
+	if lFile.Type == "html" {
+		lTmpl, err := template.New(iPName).Parse(iData) // Parse input
+		errC := checkParseErr("Preprocessor", err)
+		if errC {
+			hlErr(iWrt, nil, iPName, 500)
+		}
+
+		err = lTmpl.Execute(iWrt, template.HTML("")) // Execute template
+		errC = checkParseErr("Preprocessor", err)
+		if errC {
+			hlErr(iWrt, nil, iPName, 500)
+		}
+	} else if lFile.IsTemplate {
+		fmt.Fprintf(iWrt, fRunCmd(lFile.Type, lFile.Name))
 	}
 
 	// Done!
