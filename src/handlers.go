@@ -86,7 +86,7 @@ func hGoglingInfo(iWrt http.ResponseWriter, iReq *http.Request) {
 func hMain(iWrt http.ResponseWriter, iReq *http.Request) {
 	var lGet = iReq.URL.Path[1:]   // To make life easier
 	if lGet == "" || lGet == "/" { // To allow "/" requests
-		lGet = "index.html"
+		lGet = sConf["index"]
 	}
 
 	lData, err := ioutil.ReadFile("data/" + lGet) // Get data & error (if any)

@@ -44,10 +44,11 @@ func fCheckMatch(iName string, iRegExp string) bool {
 }
 
 func fRunCmd(iBin string, iFile string) string {
-	lCmd := exec.Command(iBin, "data/"+iFile) // Run process
-	oData, err := lCmd.Output()               // Wait for finishing and get output
-	checkWarn("File Runner", err)             // Check for errors
-	return string(oData)                      // Return output
+	lCmd := exec.Command(iBin, iFile) // Declare process
+	lCmd.Dir = "data/"                // Change working directory
+	oData, err := lCmd.Output()       // Run, wait for finishing and get output
+	checkWarn("File Runner", err)     // Check for errors
+	return string(oData)              // Return output
 }
 
 func fGetFileType(iName string) string {
