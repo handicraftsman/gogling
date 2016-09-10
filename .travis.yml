@@ -3,4 +3,5 @@ go:
  - 1.6.3
 install:
   - make pull
+script:
   - make build
