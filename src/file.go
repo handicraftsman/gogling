@@ -1,4 +1,4 @@
-/* err.go
+/* file.go
  *
  * Copyright (C) 2016 Nickolay Ilyushin <nickolay02@inbox.ru>
  *
@@ -18,28 +18,20 @@
 
 package main
 
-import (
-	"log"
-	"os"
-)
+import "path"
 
-func checkErr(iPart string, iErr error) {
-	if iErr != nil {
-		log.Printf("\033[31m# %s: %s \033[0m\n", iPart, iErr.Error())
-		os.Exit(1)
-	}
+type fInfo struct {
+	Name string
+	Ext  string
 }
 
-func checkWarn(iPart string, iErr error) {
-	if iErr != nil {
-		log.Printf("\033[33m# %s: %s \033[0m\n", iPart, iErr.Error())
-	}
-}
+func fGetInfo(iName string) fInfo {
+	var oOut fInfo // Declare our output :P
+	var err error  // Declare error to check it later
 
-func checkParseErr(iPart string, iErr error) bool {
-	if iErr != nil {
-		log.Printf("\033[33m# %s: %s \033[0m\n", iPart, iErr.Error())
-		return true
-	}
-	return false
+	oOut.Name = iName           // Set filename
+	oOut.Ext = path.Ext(iName)  // Set extension
+	checkRuntimeErr(lFile, err) // Check for runtime errors
+
+	return oOut // Return?
 }

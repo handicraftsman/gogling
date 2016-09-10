@@ -18,13 +18,10 @@
 
 package main
 
-import (
-	"flag"
-	"log"
-)
+import "flag"
 
 var sName = "Gogling"
-var sVer = "0.0.1"
+var sVer = "0.0.1-pre3"
 var sDone = make(chan bool)
 var sTestName *string
 var sAllTests bool
@@ -35,8 +32,9 @@ func main() {
 	flag.Parse()                                             // Parse flags
 	//tRunTests()
 
-	log.Printf("# Main: It's %s v%s", sName, sVer) // Output info about our Gogling
-	log.Print("# Main: Started")
+	lInit()
+	lMain.Printf("It's %s v%s", sName, sVer) // Output info about our Gogling
+	lMain.Println("Started")
 
 	go cMain() // Load config in separate thread
 	<-sDone    // Wait until config loads
@@ -45,5 +43,5 @@ func main() {
 	go nMain()              // Start network thread
 
 	<-sDone // Send true here to exit
-	log.Print("# Main: Exiting")
+	lMain.Println("# Main: Exiting")
 }

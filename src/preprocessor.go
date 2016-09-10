@@ -19,29 +19,37 @@
 package main
 
 import (
-	"html/template"
+	"fmt"
+	"io/ioutil"
 	"net/http"
+
+	"github.com/yuin/gopher-lua"
 )
 
-// Returns output to iWrt, input: iData, iPName
-func pProcess(iWrt http.ResponseWriter, iData string, iPName string) {
-	lTmpl, err := template.New(iPName).Parse(iData) // Parse input
-	errC := checkParseErr("Preprocessor", err)
-	if errC {
-		hlErr(iWrt, nil, iPName, 500)
-	}
+func pProcess(iWrt http.ResponseWriter, iReq *http.Request, iData string, iPath string) /*(string, int)*/ {
+	lFile := fGetInfo(iPath) // Get info about file
+	if lFile.Ext == ".lua" { // If target file is lua script, execute it
+		if pLuaParse(lFile.Name) {
+			hlErr(iWrt, iReq, iPath, 500) // If lua errored - crash
+		}
+	} else {
+		lData, err := ioutil.ReadFile("data/" + lFile.Name) // Read file
+		if !hlErrScan(iWrt, iReq, lFile.Name, err) {        // If not errored
+			iWrt.Header().Set("Content-Type", "text/html; charset=utf-8")
+			iWrt.Header().Set("X-Content-Type-Options", "nosniff")
 
-	err = lTmpl.Execute(iWrt, template.HTML("")) // Execute template
-	errC = checkParseErr("Preprocessor", err)
-	if errC {
-		hlErr(iWrt, nil, iPName, 500)
-	}
+			iWrt.WriteHeader(200) // Set code
 
-	// Done!
+			fmt.Fprint(iWrt, string(lData)) // Send data
+		}
+	}
 }
 
-/* Why so short?
- *
- * Go has it's own preprocessor in 'text/template' and 'html/template' packages
- * We are using them here
- */
+func pLuaParse(iPath string) bool { // Lua runner
+	lLua := lua.NewState()              // Init Lua
+	defer lLua.Close()                  // Close VM after finishing
+	mMain(lLua)                         // Load modules
+	err := lLua.DoFile("data/" + iPath) // Run needed file
+
+	return checkRuntimeErr(lPrep, err) // Check for errors
+}

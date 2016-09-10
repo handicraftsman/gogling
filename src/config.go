@@ -21,22 +21,21 @@ package main
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
 )
 
 var sConf = map[string]string{}
 
 func cMain() {
-	log.Println("# Conf: Reading config file")
+	lConf.Println("Reading config file")
 
 	lData, err := ioutil.ReadFile("conf.json") // Read our config.
-	checkErr("Conf", err)
+	checkErr(lConf, err)
 
-	log.Println("# Conf: Parsing JSON")
+	lConf.Println("Parsing JSON")
 
 	err = json.Unmarshal(lData, &sConf) // Parse JSON
-	checkErr("Conf", err)
+	checkErr(lConf, err)
 
-	log.Println("# Conf: Finished.") // Done!
+	lConf.Println("Finished!") // Done!
 	sDone <- true
 }
