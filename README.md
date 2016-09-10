@@ -8,9 +8,11 @@ You can skip this step if you already have Go<br/>
 Otherwise, install it via your package manager or get it from https://golang.org/
 ## Step 1: clone repo
 `git clone https://github.com/handicraftsman/gogling`
-## Step 2: build Gogling
-`make`
-## Step 3: run Gogling
+## Step 2: pull deps & sources
+`make pull`
+## Step 3: build Gogling
+`make build`
+## Step 4: run Gogling
 `./gogling`
 
 <br/>
