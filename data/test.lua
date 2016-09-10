@@ -1,7 +1,0 @@
-local g = require("gogling")
-local misc = require("gogling.misc")
-local net = require("gogling.net")
-net.init()
-net.echo("<h1>Here you can see index.html</h1>\n")
-net.send_file_html("index.html")
-net.close()

@@ -1,3 +1,7 @@
+local g = require("gogling")
+local net = require("gogling.net")
+net.init()
+data = [[
 <!DOCTYPE html>
 
 <html>
@@ -26,7 +30,7 @@
 	</head>
 	<body class="">
 		<header style="background-color: #3E98D4; color: white;">
-			<h3 class="data">Gogling</h3>
+			<h3 class="data">Gogling ]] .. g.version .. [[</h3>
 		</header>
     <article class="data" style="background-color: #EBEBEB">
       <p><kbd>
@@ -86,3 +90,6 @@
     </article>
 	</body>
 </html>
+]]
+net.echo(data)
+net.close()
