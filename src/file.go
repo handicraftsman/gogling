@@ -26,45 +26,12 @@ type fInfo struct {
 }
 
 func fGetInfo(iName string) fInfo {
-	var oOut fInfo
-	var err error
+	var oOut fInfo // Declare our output :P
+	var err error  // Declare error to check it later
 
-	oOut.Name = iName
-	oOut.Ext = path.Ext(iName)
-	checkRuntimeErr(lFile, err)
+	oOut.Name = iName           // Set filename
+	oOut.Ext = path.Ext(iName)  // Set extension
+	checkRuntimeErr(lFile, err) // Check for runtime errors
 
-	return oOut
+	return oOut // Return?
 }
-
-/**
-func fCheckMatch(iName string, iRegExp string) bool {
-	oMatch, err := regexp.MatchString(iRegExp, iName) // Check text
-	checkWarn(lRegex, err)                            // Check for errors
-	return oMatch                                     // Return result
-}
-
-func fRunCmd(iBin string, iFile string) string {
-	lCmd := exec.Command(iBin, iFile) // Declare process
-	lCmd.Dir = "data/"                // Change working directory
-	oData, err := lCmd.Output()       // Run, wait for finishing and get output
-	checkWarn(lFile, err)             // Check for errors
-	return string(oData)              // Return output
-}
-
-func fGetFileType(iName string) string {
-	var oOut string                   // Define output variable
-	if fCheckMatch(iName, "\\.lua") { // For Lua
-		oOut = "lua"
-	} else { // If can't detect
-		oOut = "plain-text"
-	}
-	return oOut // Return output
-}
-
-func fIsTemplate(iName string) bool {
-	var oOut bool                                     // Define output variable
-	oOut, err := regexp.MatchString("\\.tmpl", iName) // Ckeck text
-	checkWarn(lFile, err)                             // Check for errors
-	return oOut                                       // Return output
-}
-**/

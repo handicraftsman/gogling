@@ -7,9 +7,9 @@ import (
 	"syscall"
 )
 
-var lStdout io.Writer
+var lStdout io.Writer // Declare stdout
 
-var lMain *log.Logger
+var lMain *log.Logger // Declare logs
 var lNet *log.Logger
 var lPrep *log.Logger
 var lRegex *log.Logger
@@ -18,7 +18,7 @@ var lFile *log.Logger
 var lLog *log.Logger
 var lLuaP *log.Logger
 
-func lInit() {
+func lInit() { // Init all wars
 	lStdout = os.NewFile(uintptr(syscall.Stdout), "stdout")
 
 	lMain = log.New(lStdout, "# Main: ", -1)
@@ -30,20 +30,20 @@ func lInit() {
 	lLuaP = log.New(lStdout, "# Lua: ", -1)
 }
 
-func checkErr(iLog *log.Logger, iErr error) {
+func checkErr(iLog *log.Logger, iErr error) { // Error checker
 	if iErr != nil {
 		iLog.Printf("\033[31m%s \033[0m\n", iErr.Error())
 		os.Exit(1)
 	}
 }
 
-func checkWarn(iLog *log.Logger, iErr error) {
+func checkWarn(iLog *log.Logger, iErr error) { // Warning checker
 	if iErr != nil {
 		iLog.Printf("\033[33m%s \033[0m\n", iErr.Error())
 	}
 }
 
-func checkRuntimeErr(iLog *log.Logger, iErr error) bool {
+func checkRuntimeErr(iLog *log.Logger, iErr error) bool { // Runtime-error checker
 	if iErr != nil {
 		iLog.Printf("\033[33m%s \033[0m\n", iErr.Error())
 		return true
@@ -51,7 +51,7 @@ func checkRuntimeErr(iLog *log.Logger, iErr error) bool {
 	return false
 }
 
-func printToLog(iLog *log.Logger, iText string) {
+func printToLog(iLog *log.Logger, iText string) { // Not really needed.
 	if iLog != nil {
 		iLog.Println(iText)
 	} else {

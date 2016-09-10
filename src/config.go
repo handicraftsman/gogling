@@ -26,12 +26,12 @@ import (
 var sConf = map[string]string{}
 
 func cMain() {
-	lConf.Println("# Conf: Reading config file")
+	lConf.Println("Reading config file")
 
 	lData, err := ioutil.ReadFile("conf.json") // Read our config.
 	checkErr(lConf, err)
 
-	lConf.Println("# Conf: Parsing JSON")
+	lConf.Println("Parsing JSON")
 
 	err = json.Unmarshal(lData, &sConf) // Parse JSON
 	checkErr(lConf, err)

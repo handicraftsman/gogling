@@ -26,6 +26,7 @@ import (
 	"strconv"
 )
 
+// Now this (and next) variable can be accessed from everywhere
 var gWriter http.ResponseWriter
 var gRequest *http.Request
 
@@ -35,13 +36,12 @@ func hSend(iWrt http.ResponseWriter, iData string, iCode int) {
 	iWrt.Header().Set("Content-Type", "text/html; charset=utf-8")
 	iWrt.Header().Set("X-Content-Type-Options", "nosniff")
 
-	// Send response code
-	iWrt.WriteHeader(iCode)
-	// Send response
-	fmt.Fprintf(iWrt, iData)
+	iWrt.WriteHeader(iCode) // Send response code
+
+	fmt.Fprintf(iWrt, iData) // Send response
 }
 
-// Error-Handler
+// Errorer
 func hlErr(iWrt http.ResponseWriter, iReq *http.Request, iGet string, iCode int) {
 	lPath := "err/" + strconv.Itoa(iCode) + ".html" // Get correct path
 
@@ -98,13 +98,7 @@ func hMain(iWrt http.ResponseWriter, iReq *http.Request) {
 	lErrored := hlErrScan(iWrt, iReq, lGet, err)  // Scan for errors
 
 	if !lErrored { // If no errors - send data
-		// Set content type to HTML
-		iWrt.Header().Set("Content-Type", "text/html; charset=utf-8")
-		iWrt.Header().Set("X-Content-Type-Options", "nosniff")
-
-		/*lOut, lCode :=*/ pProcess(iWrt, iReq, string(lData), lGet) // Send data
-		/*hSend(iWrt, lOut, lCode)*/
-		//fmt.Fprintf(iWrt, string(lData))                     // Send data
+		pProcess(iWrt, iReq, string(lData), lGet)             // Send data
 		lNet.Println("\033[32m# Net: Sent:", lGet, "\033[0m") // Send notification into console
 	}
 
