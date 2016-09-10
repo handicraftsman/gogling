@@ -21,14 +21,16 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"strconv"
 )
 
-// Error-sender
-func hlErrSend(iWrt http.ResponseWriter, iData string, iCode int) {
+var gWriter http.ResponseWriter
+var gRequest *http.Request
+
+// Sender
+func hSend(iWrt http.ResponseWriter, iData string, iCode int) {
 	// Set content type to HTML
 	iWrt.Header().Set("Content-Type", "text/html; charset=utf-8")
 	iWrt.Header().Set("X-Content-Type-Options", "nosniff")
@@ -51,8 +53,8 @@ func hlErr(iWrt http.ResponseWriter, iReq *http.Request, iGet string, iCode int)
 		lOut = "Gogling says: \"" + strconv.Itoa(iCode) + "\""
 	}
 
-	hlErrSend(iWrt, lOut, iCode)                                 // Send data
-	log.Printf("\033[31m# Net: %d: data/%s\033[0m", iCode, iGet) // Send notification into console
+	hSend(iWrt, lOut, iCode)                                      // Send data
+	lNet.Printf("\033[31m# Net: %d: data/%s\033[0m", iCode, iGet) // Send notification into console
 }
 
 // Error-Scanner
@@ -77,13 +79,16 @@ func hGoglingInfo(iWrt http.ResponseWriter, iReq *http.Request) {
 		fmt.Fprintf(iWrt, "Version: %s\n", sVer)
 		fmt.Fprintf(iWrt, "</p>")
 	} else { // HEY!
-		log.Println("\033[31m# Net: Somebody tried to access info page, but it's disabled in config\033[0m")
+		lNet.Println("\033[31m# Net: Somebody tried to access info page, but it's disabled in config\033[0m")
 		fmt.Fprintf(iWrt, "<h1><strong>Sorry, this output is disabled in gogling's config</strong></h1>")
 	}
 }
 
 // Main handler. Gets files
 func hMain(iWrt http.ResponseWriter, iReq *http.Request) {
+	gWriter = iWrt // To make it accessible
+	gRequest = iReq
+
 	var lGet = iReq.URL.Path[1:]   // To make life easier
 	if lGet == "" || lGet == "/" { // To allow "/" requests
 		lGet = sConf["index"]
@@ -97,10 +102,14 @@ func hMain(iWrt http.ResponseWriter, iReq *http.Request) {
 		iWrt.Header().Set("Content-Type", "text/html; charset=utf-8")
 		iWrt.Header().Set("X-Content-Type-Options", "nosniff")
 
-		pProcess(iWrt, string(lData), lGet) // Send data
+		/*lOut, lCode :=*/ pProcess(iWrt, iReq, string(lData), lGet) // Send data
+		/*hSend(iWrt, lOut, lCode)*/
 		//fmt.Fprintf(iWrt, string(lData))                     // Send data
-		log.Println("\033[32m# Net: Sent:", lGet, "\033[0m") // Send notification into console
+		lNet.Println("\033[32m# Net: Sent:", lGet, "\033[0m") // Send notification into console
 	}
+
+	gWriter = nil // Clear me!
+	gRequest = nil
 }
 
 // Network thread
