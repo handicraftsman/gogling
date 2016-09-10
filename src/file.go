@@ -18,28 +18,28 @@
 
 package main
 
-import (
-	"os/exec"
-	"regexp"
-)
+import "path"
 
 type fInfo struct {
-	Name       string
-	Type       string
-	IsTemplate bool
+	Name string
+	Ext  string
 }
 
 func fGetInfo(iName string) fInfo {
 	var oOut fInfo
+	var err error
+
 	oOut.Name = iName
-	oOut.Type = fGetFileType(iName)
-	oOut.IsTemplate = fIsTemplate(iName)
+	oOut.Ext = path.Ext(iName)
+	checkRuntimeErr(lFile, err)
+
 	return oOut
 }
 
+/**
 func fCheckMatch(iName string, iRegExp string) bool {
 	oMatch, err := regexp.MatchString(iRegExp, iName) // Check text
-	checkWarn("RegExp", err)                          // Check for errors
+	checkWarn(lRegex, err)                            // Check for errors
 	return oMatch                                     // Return result
 }
 
@@ -47,7 +47,7 @@ func fRunCmd(iBin string, iFile string) string {
 	lCmd := exec.Command(iBin, iFile) // Declare process
 	lCmd.Dir = "data/"                // Change working directory
 	oData, err := lCmd.Output()       // Run, wait for finishing and get output
-	checkWarn("File Runner", err)     // Check for errors
+	checkWarn(lFile, err)             // Check for errors
 	return string(oData)              // Return output
 }
 
@@ -64,6 +64,7 @@ func fGetFileType(iName string) string {
 func fIsTemplate(iName string) bool {
 	var oOut bool                                     // Define output variable
 	oOut, err := regexp.MatchString("\\.tmpl", iName) // Ckeck text
-	checkWarn("RegExp", err)                          // Check for errors
+	checkWarn(lFile, err)                             // Check for errors
 	return oOut                                       // Return output
 }
+**/

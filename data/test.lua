@@ -1,0 +1,7 @@
+local g = require("gogling")
+local misc = require("gogling.misc")
+local net = require("gogling.net")
+misc.log("Boo")
+net.init()
+net.echo("<h1>Hello, world!</h1>")
+net.close()

@@ -20,6 +20,45 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"net/http"
+
+	"github.com/yuin/gopher-lua"
+)
+
+func pProcess(iWrt http.ResponseWriter, iReq *http.Request, iData string, iPath string) /*(string, int)*/ {
+	lFile := fGetInfo(iPath) // Get info about file
+	if lFile.Ext == ".lua" { // If target file is lua script, execute it
+		if pLuaParse(lFile.Name) {
+			hlErr(iWrt, iReq, iPath, 500)
+		}
+	} else {
+		lData, err := ioutil.ReadFile("data/" + lFile.Name)
+		if !hlErrScan(iWrt, iReq, lFile.Name, err) {
+			iWrt.Header().Set("Content-Type", "text/html; charset=utf-8")
+			iWrt.Header().Set("X-Content-Type-Options", "nosniff")
+
+			iWrt.WriteHeader(200)
+
+			fmt.Fprint(iWrt, string(lData))
+		}
+
+	}
+
+}
+
+func pLuaParse(iPath string) bool {
+	lLua := lua.NewState()
+	defer lLua.Close()
+	mMain(lLua)
+	err := lLua.DoFile("data/" + iPath)
+
+	return checkRuntimeErr(lPrep, err)
+}
+
+/* OLD
+import (
+	"fmt"
 	"html/template"
 	"net/http"
 )
@@ -30,13 +69,13 @@ func pProcess(iWrt http.ResponseWriter, iData string, iPName string) {
 
 	if lFile.Type == "html" {
 		lTmpl, err := template.New(iPName).Parse(iData) // Parse input
-		errC := checkParseErr("Preprocessor", err)
+		errC := checkRuntimeErr(lPrep, err)
 		if errC {
 			hlErr(iWrt, nil, iPName, 500)
 		}
 
 		err = lTmpl.Execute(iWrt, template.HTML("")) // Execute template
-		errC = checkParseErr("Preprocessor", err)
+		errC = checkRuntimeErr(lPrep, err)
 		if errC {
 			hlErr(iWrt, nil, iPName, 500)
 		}
@@ -47,6 +86,7 @@ func pProcess(iWrt http.ResponseWriter, iData string, iPName string) {
 	// Done!
 }
 
+/**/
 /* Why so short?
  *
  * Go has it's own preprocessor in 'text/template' and 'html/template' packages
