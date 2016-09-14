@@ -86,7 +86,7 @@ data = [[
             <p>README</p>
           </li>
         </ul>
-	<a href="https://handicraftsman.github.io" alt="Gogling's Site">Gogling's Site></a>
+	<a href="https://handicraftsman.github.io/gogling" alt="Gogling's Site">Gogling's Site></a>
       </kbd></p>
     </article>
 	</body>
