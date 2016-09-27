@@ -27,9 +27,12 @@ data = [[
         margin-top: 0
       }
     </style>
+
+
+
 	</head>
 	<body class="">
-		<header style="background-color: #3E98D4; color: white;">
+		<header style="background-color: #003560; color: white;">
 			<h3 class="data">Gogling ]] .. g.version .. [[</h3>
 		</header>
     <article class="data" style="background-color: #EBEBEB">
@@ -86,10 +89,10 @@ data = [[
             <p>README</p>
           </li>
         </ul>
+	<a href="https://handicraftsman.tk.gogling/" alt="Gogling's Site" style="color: #003560">Gogling's Site></a>
       </kbd></p>
     </article>
 	</body>
 </html>
 ]]
 net.echo(data)
-net.close()
