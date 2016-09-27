@@ -24,6 +24,7 @@ var mNetExports = map[string]lua.LGFunction{ // Here we are storing functions
 func mNetInit(iLua *lua.LState) int { // Init HTTP message
 	gWriter.Header().Set("Content-Type", "text/html; charset=utf-8")
 	gWriter.Header().Set("X-Content-Type-Options", "nosniff")
+	gWriter.Header().Set("Server", sName+" "+sVer)
 
 	return 0
 }
