@@ -1,4 +1,4 @@
-/* pre_main.go
+/* preprocessor.go
  *
  * Copyright (C) 2016 Nickolay Ilyushin <nickolay02@inbox.ru>
  *
