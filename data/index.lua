@@ -35,7 +35,7 @@ data = [[
 	</head>
 	<body class="">
 		<header style="background-color: #003560; color: white;">
-			<h3 class="data">Gogling</h3>
+			<h3 class="data">Gogling v]] .. g.version .. [[</h3>
 		</header>
     <article class="data" style="background-color: #EBEBEB">
       <p><kbd>
@@ -43,7 +43,6 @@ data = [[
         You just started blank gogling app.<br/>
         This server supports 2 languages: classical Go template language and Lua<br/>
         Let me tell more about gogling's file structure:
-        ]] .. cookie.get("text") .. [[
         <ul>
           <li>
             <b>.git/</b><br/>
