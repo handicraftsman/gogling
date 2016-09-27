@@ -58,7 +58,7 @@ func pProcess(iWrt http.ResponseWriter, iReq *http.Request, iData string, iPath 
 
 			lBuf := new(bytes.Buffer)
 			err2 := binary.Write(lBuf, binary.LittleEndian, lData)
-			checkRuntimeErr(lPrep, err2)
+			checkWarn(lPrep, err2)
 
 			iWrt.Write(lBuf.Bytes()) // Send data
 		}

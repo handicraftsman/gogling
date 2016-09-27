@@ -19,6 +19,8 @@
 package main
 
 import (
+	"bytes"
+	"encoding/binary"
 	"fmt"
 	"io/ioutil"
 
@@ -33,17 +35,18 @@ func mNetLoader(lLua *lua.LState) int {
 }
 
 var mNetExports = map[string]lua.LGFunction{ // Here we are storing functions
-	"init":           mNetInit,
-	"echo":           mNetSend,
-	"send_file_html": mNetSendFileHTML,
-	"close":          mNetClose,
+	"init":       mNetInit,
+	"echo":       mNetSend,
+	"sendf_text": mNetSendText,
+	"sendf_raw":  mNetSendRaw,
+	"close":      mNetClose,
 }
 
 func mNetInit(iLua *lua.LState) int { // Init HTTP message
-	gWriter.Header().Set("Content-Type", "text/html; charset=utf-8")
+	iType := iLua.ToString(1)
+	gWriter.Header().Set("Content-Type", iType+"; charset=utf-8")
 	gWriter.Header().Set("X-Content-Type-Options", "nosniff")
 	gWriter.Header().Set("Server", sName+" "+sVer)
-
 	return 0
 }
 
@@ -53,7 +56,7 @@ func mNetSend(iLua *lua.LState) int { // Send data
 	return 0
 }
 
-func mNetSendFileHTML(iLua *lua.LState) int { // File Sender
+func mNetSendText(iLua *lua.LState) int { // File Sender
 	iPath := iLua.ToString(1)                      // Get argument
 	lData, err := ioutil.ReadFile("data/" + iPath) // Read file
 	if checkRuntimeErr(lLuaP, err) {               // If errored - crash
@@ -64,7 +67,30 @@ func mNetSendFileHTML(iLua *lua.LState) int { // File Sender
 	return 0
 }
 
+func mNetSendRaw(iLua *lua.LState) int {
+	iPath := iLua.ToString(1)
+	lData, err := ioutil.ReadFile("data/" + iPath)
+	if checkRuntimeErr(lLuaP, err) {
+		iLua.RaiseError("Cannot read file: %s\n", "data/"+iPath)
+	} else {
+		lBuf := new(bytes.Buffer)
+		err2 := binary.Write(lBuf, binary.LittleEndian, lData)
+		checkWarn(lPrep, err2)
+
+		gWriter.Write(lBuf.Bytes()) // Send data
+	}
+	return 0
+}
+
+func mNetGetPost(iLua *lua.LState) int {
+	iName := iLua.ToString(1)
+	oValue := gRequest.PostFormValue(iName)
+	iLua.Push(lua.LString(oValue))
+	return 0
+}
+
 func mNetClose(iLua *lua.LState) int { // Exit
-	gWriter.WriteHeader(200)
+	iCode := iLua.ToInt(1)
+	gWriter.WriteHeader(iCode)
 	return 0
 }

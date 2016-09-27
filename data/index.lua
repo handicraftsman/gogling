@@ -1,6 +1,6 @@
 local g = require("gogling")
 local net = require("gogling.net")
-net.init()
+net.init("text/html")
 data = [[
 <!DOCTYPE html>
 
