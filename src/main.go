@@ -21,7 +21,7 @@ package main
 import "flag"
 
 var sName = "Gogling"
-var sVer = "0.0.1-pre3"
+var sVer = "0.0.1-pre4"
 var sDone = make(chan bool)
 var sTestName *string
 var sAllTests bool

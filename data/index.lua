@@ -1,6 +1,8 @@
 local g = require("gogling")
 local net = require("gogling.net")
-net.init()
+local cookie = require("gogling.net.cookie")
+net.init("text/html")
+
 data = [[
 <!DOCTYPE html>
 
@@ -33,7 +35,7 @@ data = [[
 	</head>
 	<body class="">
 		<header style="background-color: #003560; color: white;">
-			<h3 class="data">Gogling ]] .. g.version .. [[</h3>
+			<h3 class="data">Gogling</h3>
 		</header>
     <article class="data" style="background-color: #EBEBEB">
       <p><kbd>
@@ -41,6 +43,7 @@ data = [[
         You just started blank gogling app.<br/>
         This server supports 2 languages: classical Go template language and Lua<br/>
         Let me tell more about gogling's file structure:
+        ]] .. cookie.get("text") .. [[
         <ul>
           <li>
             <b>.git/</b><br/>
@@ -55,7 +58,7 @@ data = [[
             <p>Here you can store all your PUBLIC data</p>
           </li>
           <li>
-            <b>internal/</b><br/>
+            <b>internal/</b> <strong>&lt;NOT YET IMPLEMENTED&gt;</strong><br/>
             <p>Here you can store all files you won't make public.
             For example, your lua libraries</p>
           </li>
@@ -82,17 +85,18 @@ data = [[
           <li>
             <b>Makefile</b><br/>
             <p>Is it really necessary to describe this file? You just built
-            gogling via it</p>
+            gogling with it</p>
           </li>
           <li>
             <b>README.md</b><br/>
             <p>README</p>
           </li>
         </ul>
-	<a href="https://handicraftsman.tk.gogling/" alt="Gogling's Site" style="color: #003560">Gogling's Site></a>
+	<a href="https://handicraftsman.tk/gogling/" alt="Gogling's Site" style="color: #003560">Gogling's Site></a>
       </kbd></p>
     </article>
 	</body>
 </html>
 ]]
+
 net.echo(data)

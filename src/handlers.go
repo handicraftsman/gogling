@@ -53,8 +53,8 @@ func hlErr(iWrt http.ResponseWriter, iReq *http.Request, iGet string, iCode int)
 		lOut = "Gogling says: \"" + strconv.Itoa(iCode) + "\""
 	}
 
-	hSend(iWrt, lOut, iCode)                                      // Send data
-	lNet.Printf("\033[31m# Net: %d: data/%s\033[0m", iCode, iGet) // Send notification into console
+	hSend(iWrt, lOut, iCode)                                 // Send data
+	lNet.Printf("\033[31m# %d: data/%s\033[0m", iCode, iGet) // Send notification into console
 }
 
 // Error-Scanner
@@ -79,7 +79,7 @@ func hGoglingInfo(iWrt http.ResponseWriter, iReq *http.Request) {
 		fmt.Fprintf(iWrt, "Version: %s\n", sVer)
 		fmt.Fprintf(iWrt, "</p>")
 	} else { // HEY!
-		lNet.Println("\033[31m# Net: Somebody tried to access info page, but it's disabled in config\033[0m")
+		lNet.Println("\033[31m# Somebody tried to access info page, but it's disabled in config\033[0m")
 		fmt.Fprintf(iWrt, "<h1><strong>Sorry, this output is disabled in gogling's config</strong></h1>")
 	}
 }
@@ -98,8 +98,8 @@ func hMain(iWrt http.ResponseWriter, iReq *http.Request) {
 	lErrored := hlErrScan(iWrt, iReq, lGet, err)  // Scan for errors
 
 	if !lErrored { // If no errors - send data
-		pProcess(iWrt, iReq, string(lData), lGet)             // Send data
-		lNet.Println("\033[32m# Net: Sent:", lGet, "\033[0m") // Send notification into console
+		pProcess(iWrt, iReq, string(lData), lGet) // Send data
+		//lNet.Println("\033[32m# Sent:", lGet, "\033[0m") // Send notification into console
 	}
 
 	gWriter = nil // Clear me!
