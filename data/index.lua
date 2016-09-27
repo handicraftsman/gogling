@@ -55,7 +55,7 @@ data = [[
             <p>Here you can store all your PUBLIC data</p>
           </li>
           <li>
-            <b>internal/</b><br/>
+            <b>internal/</b> <strong>&lt;NOT YET IMPLEMENTED&gt;</strong><br/>
             <p>Here you can store all files you won't make public.
             For example, your lua libraries</p>
           </li>
@@ -82,14 +82,14 @@ data = [[
           <li>
             <b>Makefile</b><br/>
             <p>Is it really necessary to describe this file? You just built
-            gogling via it</p>
+            gogling with it</p>
           </li>
           <li>
             <b>README.md</b><br/>
             <p>README</p>
           </li>
         </ul>
-	<a href="https://handicraftsman.tk.gogling/" alt="Gogling's Site" style="color: #003560">Gogling's Site></a>
+	<a href="https://handicraftsman.tk/gogling/" alt="Gogling's Site" style="color: #003560">Gogling's Site></a>
       </kbd></p>
     </article>
 	</body>
