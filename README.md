@@ -18,3 +18,9 @@ Otherwise, install it via your package manager or get it from https://golang.org
 <br/>
 ## For developers:
 You can build & run Gogling with `make br` command
+
+# Stable Version
+I'll publish first "stable" version after:
+1. Adding database API (at first - SQLite)
+2. Adding REST API
+3. Adding private storage API
