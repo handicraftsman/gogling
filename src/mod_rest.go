@@ -19,8 +19,6 @@
 package main
 
 import (
-	"fmt"
-
 	luar "github.com/layeh/gopher-luar"
 	lua "github.com/yuin/gopher-lua"
 )
@@ -51,13 +49,10 @@ func mNetRestGet(iLua *lua.LState) int {
 
 func mNetRestGetAll(iLua *lua.LState) int {
 	var lOut = make(map[string]string)
-	fmt.Println("Start-Parse")
 	for lKey := range nURLData {
 		lValue := nURLData.Get(lKey)
-		fmt.Println(lKey + " | " + lValue)
 		lOut[lKey] = lValue
 	}
-	fmt.Println("End-Parse")
 	iLua.Push(luar.New(iLua, lOut))
 	return 1
 }
