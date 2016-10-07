@@ -24,6 +24,7 @@ func mMain(iLua *lua.LState) {
 	iLua.PreloadModule("gogling", mGLoader)                    // Include main gogling's module
 	iLua.PreloadModule("gogling.net", mNetLoader)              // Network module
 	iLua.PreloadModule("gogling.net.cookie", mNetCookieLoader) // Cookie module
+	iLua.PreloadModule("gogling.net.rest", mNetRestLoader)     // REST module
 	iLua.PreloadModule("gogling.misc", mMiscLoader)            // Misc module
 }
 

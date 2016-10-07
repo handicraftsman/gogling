@@ -24,9 +24,13 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 
 	"github.com/yuin/gopher-lua"
 )
+
+var nURL *url.URL
+var nURLData url.Values
 
 func pProcess(iWrt http.ResponseWriter, iReq *http.Request, iData string, iPath string) /*(string, int)*/ {
 	lFile := fGetInfo(iPath) // Get info about file

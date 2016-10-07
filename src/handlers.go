@@ -89,6 +89,9 @@ func hMain(iWrt http.ResponseWriter, iReq *http.Request) {
 	gWriter = iWrt // To make it accessible
 	gRequest = iReq
 
+	nURL = iReq.URL
+	nURLData = nURL.Query()
+
 	var lGet = iReq.URL.Path[1:]   // To make life easier
 	if lGet == "" || lGet == "/" { // To allow "/" requests
 		lGet = sConf["index"]
@@ -104,6 +107,8 @@ func hMain(iWrt http.ResponseWriter, iReq *http.Request) {
 
 	gWriter = nil // Clear me!
 	gRequest = nil
+	nURL = nil
+	nURLData = nil
 }
 
 // Network thread
