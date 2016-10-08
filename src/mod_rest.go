@@ -30,29 +30,60 @@ func mNetRestLoader(iLua *lua.LState) int {
 }
 
 var mNetRestExports = map[string]lua.LGFunction{ // Here we are storing our funcs
+	"method": mNetRestMethod,
+
 	"get":    mNetRestGet,
 	"getAll": mNetRestGetAll,
+
+	"post":    mNetRestPost,
+	"postAll": mNetRestPostAll,
 }
 
-// GET
+/* UTILS */
+func mNetRestMethod(iLua *lua.LState) int {
+	lMethod := gRequest.Method      // Get method
+	iLua.Push(lua.LString(lMethod)) // Return it
+	return 1
+}
+
+/* GET */
 func mNetRestGet(iLua *lua.LState) int {
-	lKey := iLua.ToString(1)
-
-	lValue := nURLData.Get(lKey)
-	if lValue == "" {
-		lValue = "nil"
+	lKey := iLua.ToString(1)     // Get key
+	lValue := nURLData.Get(lKey) // Get value using key
+	if lValue == "" {            // Set to "nil" if it's empty
+		lValue = "#nil"
 	}
-
-	iLua.Push(lua.LString(lValue))
+	iLua.Push(lua.LString(lValue)) // Return value
 	return 1
 }
 
 func mNetRestGetAll(iLua *lua.LState) int {
-	var lOut = make(map[string]string)
-	for lKey := range nURLData {
-		lValue := nURLData.Get(lKey)
-		lOut[lKey] = lValue
+	lOut := make(map[string]string) // Make for-output map
+	for lKey := range nURLData {    // For each key in our GET:
+		lValue := nURLData.Get(lKey) // Get value using key
+		lOut[lKey] = lValue          // Save it to output map
 	}
-	iLua.Push(luar.New(iLua, lOut))
+	iLua.Push(luar.New(iLua, lOut)) // Return result
+	return 1
+}
+
+/* POST */
+func mNetRestPost(iLua *lua.LState) int {
+	lKey := iLua.ToString(1)               // Get key
+	lValue := gRequest.PostFormValue(lKey) // Get value using key
+	if lValue == "" {                      // Set to "nil" if it's empty
+		lValue = "#nil"
+	}
+	iLua.Push(lua.LString(lValue)) // Return value
+	return 1
+}
+
+func mNetRestPostAll(iLua *lua.LState) int {
+	lOut := make(map[string]string)       // Make for-output map
+	for lKey := range gRequest.PostForm { // For each key in our POST:
+		lValue := gRequest.PostForm.Get(lKey) // Get value using key
+		lOut[lKey] = lValue                   // Save it to output map
+	}
+	iLua.Push(luar.New(iLua, lOut)) // Return result
 	return 1
 }

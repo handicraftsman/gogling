@@ -113,6 +113,8 @@ func pGetType(iExt string) (string, string) {
 }
 
 func pLuaParse(iPath string) bool { // Lua runner
+	gRequest.ParseForm() // To allow it reading POST data
+
 	lLua := lua.NewState()              // Init Lua
 	defer lLua.Close()                  // Close VM after finishing
 	mMain(lLua)                         // Load modules
