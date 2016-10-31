@@ -1,4 +1,4 @@
-/* mod_misc.go
+/* mod_rest.go
  *
  * Copyright (C) 2016 Nickolay Ilyushin <nickolay02@inbox.ru>
  *

@@ -6,6 +6,7 @@ run:
 pull:
 	git pull
 	go get -v -u github.com/layeh/gopher-luar
+	go get -v -u github.com/mattn/go-sqlite3
 
 test_all:
 	go build -o "gogling" src/*.go

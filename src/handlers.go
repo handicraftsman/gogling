@@ -86,6 +86,7 @@ func hGoglingInfo(iWrt http.ResponseWriter, iReq *http.Request) {
 
 // Main handler. Gets files
 func hMain(iWrt http.ResponseWriter, iReq *http.Request) {
+	fmt.Println("ListenAttemp")
 	gWriter = iWrt // To make it accessible
 	gRequest = iReq
 
