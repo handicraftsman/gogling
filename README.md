@@ -21,7 +21,5 @@ You can build & run Gogling with `make br` command
 
 # Stable Version
 I'll publish first "stable" version after:
-1. Adding database API (at first - SQLite)
-2. Adding REST API
-3. Adding private storage API
-4. Adding "Show Error Traceback" feature for pages like "500" (lua only)
+1. Packing it into go-styled package
+3. Adding "Show Error Traceback" feature for pages like "500" (lua only)
