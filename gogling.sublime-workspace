@@ -1,0 +1,481 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"de",
+				"defs\tdefstruct"
+			],
+			[
+				"st",
+				"struct_\tstruct"
+			],
+			[
+				"do",
+				"dob\tInsert do |variable| … end"
+			],
+			[
+				"mainloop",
+				"mainloop\tfunc"
+			],
+			[
+				"form",
+				"format\tfunc"
+			],
+			[
+				"s",
+				"singleton\tJS singleton pattern"
+			],
+			[
+				"rcc",
+				"rcc\tReact: class component"
+			],
+			[
+				"Array",
+				"Array\tArray.new(10) { |i| .. }"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 180.0,
+		"last_filter": "Install",
+		"selected_items":
+		[
+			[
+				"Install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package",
+				"Package Control: Remove Package"
+			],
+			[
+				"Remove P",
+				"Package Control: Remove Package"
+			],
+			[
+				"Install Pack",
+				"Package Control: Install Package"
+			],
+			[
+				"remove ",
+				"Package Control: Remove Package"
+			],
+			[
+				"Install Pa",
+				"Package Control: Install Package"
+			],
+			[
+				"Remove Pa",
+				"Package Control: Remove Package"
+			],
+			[
+				"refre",
+				"Project: Refresh Folders"
+			],
+			[
+				"Boxy Theme",
+				"Boxy Theme: Activation"
+			],
+			[
+				"Install Package",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: #!/usr/bin/env"
+			],
+			[
+				"Install Pakage",
+				"Package Control: Install Package"
+			],
+			[
+				"Color",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"Package Control: Install Package",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Disable Package"
+			],
+			[
+				"Colorsublime",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"Package Control: In",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control:ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: en",
+				"Package Control: Enable Package"
+			],
+			[
+				"Packag",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 302.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/ancient/gospace/src/github.com/handicraftsman/gogling"
+	],
+	"file_history":
+	[
+		"/home/ancient/Projects/irc/electronbot/conf.yaml",
+		"/home/ancient/Projects/irc/electronbot/src/main.hs",
+		"/home/ancient/Projects/irc/electronbot/src/types.hs",
+		"/home/ancient/Projects/irc/electronbot/Setup.hs",
+		"/home/ancient/Projects/irc/electronbot/main.hs",
+		"/home/ancient/Projects/irc/electronbot/main.ex",
+		"/home/ancient/Projects/irc/electronbot/main.nim",
+		"/home/ancient/Projects/irc/electronbot/main.elx",
+		"/home/ancient/Projects/irc/electronbot/main.el",
+		"/home/ancient/Projects/irc/electronbot/electronbot.sublime-project",
+		"/home/ancient/Projects/irc/electronbot/app.lua",
+		"/home/ancient/Projects/irc/electronbot/main.moon",
+		"/home/ancient/Projects/irc/electronbot/app.moon",
+		"/home/ancient/Projects/irc/photonbot/cmd/random.rb",
+		"/home/ancient/Projects/irc/yahb/log.hy",
+		"/home/ancient/Projects/irc/electronbot/moo.moon",
+		"/home/ancient/Projects/irc/electronbot/log.moon",
+		"/home/ancient/Projects/irc/electronbot/load.moon",
+		"/home/ancient/Projects/irc/electronbot/main.py",
+		"/home/ancient/Projects/irc/protonbot/main.nim",
+		"/home/ancient/.config/sublime-text-3/Installed Packages/NimLime/nimlime_core/commands/nimcheck.py",
+		"/home/ancient/Projects/irc/protonbot/conf.yaml",
+		"/home/ancient/.config/sublime-text-3/Installed Packages/NimLime/nimlime_core/__init__.py",
+		"/home/ancient/.config/sublime-text-3/Installed Packages/NimLime/__init__.py",
+		"/home/ancient/.config/sublime-text-3/Installed Packages/NimLime/NimLime.py",
+		"/home/ancient/.config/sublime-text-3/Packages/User/NimLime.sublime-settings",
+		"/home/ancient/.config/sublime-text-3/Packages/NimLime/NimLime.sublime-settings",
+		"/home/ancient/Projects/irc/photonbot/cmd/core.rb",
+		"/home/ancient/Projects/irc/photonbot/servers.yaml",
+		"/home/ancient/Projects/irc/yahb/hy.txt",
+		"/home/ancient/Projects/irc/photonbot/cmd/utils.rb",
+		"/home/ancient/mmc/instances/1.7.10-RedPotato2/minecraft/usercache.json",
+		"/home/ancient/Projects/irc/photonbot/cmd/cleverbot.rb",
+		"/home/ancient/Projects/irc/cbs/main.py",
+		"/home/ancient/Projects/irc/photonbot/cmd/perm/db.rb",
+		"/home/ancient/Projects/irc/yahb/botrc.hy",
+		"/home/ancient/Projects/irc/yahb/bot.hy",
+		"/home/ancient/Projects/irc/yahb/reactor.hy",
+		"/home/ancient/Projects/irc/photonbot/cmd/eval.rb",
+		"/home/ancient/Projects/irc/yahb/launcher.hy",
+		"/home/ancient/Projects/irc/yahb/reactor.py",
+		"/home/ancient/Projects/irc/yahb/numcommands.hy",
+		"/home/ancient/Projects/irc/yahb/utils.hy",
+		"/home/ancient/Projects/irc/yahb/main.hy",
+		"/home/ancient/Projects/irc/yahb/requirements.txt",
+		"/home/ancient/Projects/irc/yahb/moo",
+		"/home/ancient/Projects/irc/yahb/init.sql",
+		"/home/ancient/Projects/irc/yahb/parseproblem.txt",
+		"/home/ancient/Projects/idk/main.lua",
+		"/home/ancient/Projects/idk/src/load.lua",
+		"/home/ancient/Projects/c/renderertest/src/gfx.h",
+		"/home/ancient/Projects/c/renderertest/src/includes.h",
+		"/home/ancient/Projects/c/renderertest/Makefile",
+		"/home/ancient/Projects/c/renderertest/src/main.c",
+		"/home/ancient/code/ruby/passgen.rb",
+		"/home/ancient/Projects/irc/photonbot/main.rb",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/PotatoCraft-Test/computer/3/main.lua",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/SGDialer/computer/29/book.lua",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/SGDialer/computer/29/main.lua",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/PotatoCraft-Test/computer/1/startup",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/PotatoCraft-Test/computer/1/main.lua",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/PotatoCraft-Test/computer/1/book.lua",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/SGDialer/computer/29/sg.tar.gz",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/SGDialer/computer/22/main.lua",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/SGDialer/computer/22/book.lua",
+		"/home/ancient/sg.txt",
+		"/home/ancient/Projects/irc/photonbot/irc_actions.rb",
+		"/home/ancient/Projects/irc/photonbot/cmd/joinpart.rb",
+		"/home/ancient/Projects/irc/photonbot/cmd/cmds.rb",
+		"/home/ancient/Projects/irc/photonbot/cmd/msg.rb",
+		"/home/ancient/Projects/irc/photonbot/cmd/help.rb",
+		"/home/ancient/Projects/irc/photonbot/Gemfile",
+		"/home/ancient/Projects/irc/photonbot/requires.rb",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/SGDialer/computer/3/stdio.lua",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/SGDialer/computer/3/main.lua",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/SGDialer/computer/3/render.lua",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/SGDialer/computer/3/addr.lua",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/SGDialer/computer/3/check_buttons.lua",
+		"/home/ancient/Projects/ruby/rubygoods/lib/rubygoods/version.rb",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/SGDialer/computer/3/render_buttons.lua",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/SGDialer/computer/3/startup",
+		"/home/ancient/mmc/instances/1.7.10-j/minecraft/saves/SGDialer/computer/3/winUtils.lua",
+		"/home/ancient/Projects/irc/photonbot/irc.rb",
+		"/home/ancient/Projects/irc/photonbot/cmd/ddg.rb",
+		"/home/ancient/Projects/ruby/rubygoods/lib/rubygoods.rb",
+		"/home/ancient/Projects/irc/protonbot/reactor/main.rb",
+		"/home/ancient/Projects/irc/protonbot/bot/main.rb",
+		"/home/ancient/Projects/irc/protonbot/bot/io.rb",
+		"/home/ancient/Projects/irc/protonbot/misc/msg.rb",
+		"/home/ancient/Projects/irc/protonbot/bot/chan.rb",
+		"/home/ancient/Projects/ruby/rubygoods/lib/rubygoods/log.rb",
+		"/home/ancient/Projects/irc/protonbot/reactor/loader.rb",
+		"/home/ancient/Projects/irc/protonbot/bot/starter.rb",
+		"/home/ancient/Projects/irc/protonbot/misc/msgtypes.rb",
+		"/home/ancient/Projects/irc/protonbot/main/main.rb",
+		"/home/ancient/Projects/irc/photonbot/irc_privmsg.rb",
+		"/home/ancient/Projects/irc/protonbot/misc/ping.rb",
+		"/home/ancient/Projects/irc/protonbot/misc/loader.rb",
+		"/home/ancient/Projects/irc/protonbot/loader.rb",
+		"/home/ancient/Projects/irc/protonbot/main/requires.rb",
+		"/home/ancient/Projects/irc/protonbot/patch/log.rb",
+		"/home/ancient/Projects/irc/protonbot/Gemfile",
+		"/home/ancient/Projects/irc/protonbot/TODO",
+		"/home/ancient/Projects/irc/protonbot/Rakefile",
+		"/home/ancient/Projects/irc/protonbot/Makefile",
+		"/home/ancient/Projects/irc/protonbot/help.txt",
+		"/home/ancient/Projects/irc/protonbot/bot/loader.rb",
+		"/home/ancient/Projects/irc/protonbot/main/version.rb",
+		"/home/ancient/Projects/irc/protonbot/main/loader.rb",
+		"/home/ancient/Projects/irc/protonbot/main/conf.rb",
+		"/home/ancient/Projects/irc/protonbot/main/../loader.rb",
+		"/home/ancient/Projects/irc/protonbot/Gemfile.lock",
+		"/home/ancient/Projects/ruby/rubygoods/lib/rubygoods/utils.rb",
+		"/home/ancient/Projects/irc/photonbot/conf.rb",
+		"/home/ancient/Projects/irc/protonbot/bot/conf.rb",
+		"/home/ancient/Projects/irc/protonbot/main.rb",
+		"/home/ancient/Projects/irc/protonbot/version.rb",
+		"/home/ancient/Projects/irc/protonbot/main",
+		"/home/ancient/Projects/irc/protonbot/requires.rb",
+		"/home/ancient/Projects/irc/protonbot/exe/protonbot",
+		"/home/ancient/Projects/irc/protonbot/protonbot.gemspec",
+		"/home/ancient/Projects/irc/photonbot/cmd/relay.rb",
+		"/home/ancient/Projects/irc/photonbot/cmd/ignores.rb",
+		"/home/ancient/Projects/irc/photonbot/cmd/rus.rb",
+		"/home/ancient/Projects/irc/photonserv/main.rb",
+		"/home/ancient/code/ruby/randomfaces.rb",
+		"/home/ancient/code/ruby/randomfaces.obf2.rb",
+		"/home/ancient/code/ruby/randomfaces.deco.rb"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"nil",
+			" X",
+			" Y",
+			"each",
+			"^  \\\\u",
+			"^  \\\\u0030",
+			"\\\\u0030$",
+			"^  \\\\u0030",
+			"\\\\u0030$",
+			"\\u0030",
+			"pos",
+			"str",
+			"data",
+			"\\u",
+			"{}",
+			"m.reply",
+			"perm=",
+			"perm: ",
+			"perm=",
+			"15",
+			"  \n",
+			"ptb",
+			"color",
+			"Greeter",
+			"font"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"None",
+			"PlayerX",
+			"PlayerY",
+			"  \"\\\\u",
+			"  \"\\\\u0030",
+			"\\\\u0030\" +",
+			"\\u0030\" +",
+			"  \"",
+			"\\u0030\" +",
+			"\\u0030\\n",
+			"p",
+			"s",
+			"d",
+			"",
+			"[[nick]]",
+			"m.nreply",
+			"0, ",
+			"perm: ",
+			"30"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 36.0
+	},
+	"input":
+	{
+		"height": 32.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "gogling.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 479.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"njs",
+				"~/Projects/njs/njs.sublime-project"
+			],
+			[
+				"",
+				"~/gospace/src/github.com/handicraftsman/gibot/gibot.sublime-project"
+			]
+		],
+		"width": 364.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 270.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
