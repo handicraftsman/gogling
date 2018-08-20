@@ -1,6 +1,6 @@
 language: go
 go:
- - 1.6.3
+ - 1.10.1
 install:
   - make pull
 script:

@@ -1,16 +1,13 @@
 br: build run
+
 build:
-	go build -o "gogling" src/*.go
+	go build -o $(PWD)/gogling github.com/handicraftsman/gogling/cmd/gogling
+
 run:
-	./gogling
+	$(PWD)/gogling
+
 pull:
 	git pull
-	go get -v -u github.com/layeh/gopher-luar
-
-test_all:
-	go build -o "gogling" src/*.go
-	./gogling -test=all
-
-0_echo:
-	go build -o "gogling" src/*.go
-	./gogling -test=0_echo
+	go get -v -u github.com/yuin/gopher-lua
+	go get -v -u layeh.com/gopher-luar
+	go get -v -u github.com/gorilla/mux
