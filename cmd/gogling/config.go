@@ -9,11 +9,12 @@ import (
 
 // Config - stores gogling configuration
 type Config struct {
-	Host           string
-	Port           string
-	RootDir        string
-	RouterFile     string
-  ServeTLS       bool
+	Host       string
+	Port       string
+  PluginDir  string
+	RootDir    string
+	RouterFile string
+  ServeTLS   bool
 }
 
 // ConfigLoad - loads json config into a Config struct instance

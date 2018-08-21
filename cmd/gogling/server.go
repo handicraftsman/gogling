@@ -5,6 +5,8 @@ import (
   "log"
   "path"
   "time"
+  "plugin"
+  "sync"
 
   "github.com/gorilla/mux"
   lua "github.com/yuin/gopher-lua"
@@ -17,6 +19,7 @@ type Gogling struct {
   Lctx *lua.LState
   Logger *log.Logger
   Router *mux.Router
+  Plugins *sync.Map
 }
 
 // GoglingI - an instance of Gogling
@@ -31,11 +34,27 @@ func Serve(ai *AppInfo) {
     Lctx: lua.NewState(),
     Logger: l,
     Router: mux.NewRouter(),
+    Plugins: &sync.Map{},
   }
   defer GoglingI.Lctx.Close()
   g := GoglingI.Lctx.NewTable()
-  GoglingI.Lctx.SetField(g, "I", luar.New(GoglingI.Lctx, GoglingI))
+  GoglingI.Lctx.SetGlobal("_GoglingI", luar.New(GoglingI.Lctx, GoglingI))
   GoglingI.Lctx.SetGlobal("gogling", g)
+  GoglingI.Lctx.SetGlobal("import_go", luar.New(GoglingI.Lctx, func(n string) {
+    _, ok := GoglingI.Plugins.Load(n)
+    if !ok {
+      p, err := plugin.Open(path.Join(GoglingI.AI.Config.PluginDir, "go2lua_" + n + ".so"))
+      if err != nil {
+        GoglingI.Logger.Fatal(err)
+      }
+      i, err := p.Lookup("GoglingLoad")
+      if err != nil {
+        GoglingI.Logger.Fatal(err)
+      }
+      i.(func(L *lua.LState))(GoglingI.Lctx)
+      GoglingI.Plugins.Store(n, i)
+    }
+  }));
   if err := GoglingI.Lctx.DoString(luaUtils); err != nil {
     GoglingI.Logger.Fatal(err)
   }
@@ -54,11 +73,16 @@ func Serve(ai *AppInfo) {
 }
 
 const luaUtils string = `
+  gogling.I = _GoglingI
   gogling.U = {}
   gogling.U.wrap = function(f)
     return function(writer, request)
       local session = { writer = writer, request = request }
       f(session)
     end
+  end
+  gogling.U.import = function(n)
+    import_go(n)
+    return require('go.' .. n)
   end
 `
