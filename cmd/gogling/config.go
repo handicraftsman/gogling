@@ -26,12 +26,12 @@ func ConfigLoad(path string) *Config {
 
   data, err := ioutil.ReadFile(path)
   if err != nil {
-    l.Fatal(err)
+    l.Panic(err)
   }
 
   err = json.Unmarshal(data, cfg)
   if err != nil {
-    l.Fatal(err)
+    l.Panic(err)
   }
 
   if cfg.Host == "ENV" {
