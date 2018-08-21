@@ -85,6 +85,7 @@ func LoadLua(oldLua *lua.LState) {
       }
       defer func() {
         if r := recover(); r != nil {
+          GoglingI.Logger.Print(r)
           http.Error(writer, "500 Internal Server Error", http.StatusInternalServerError)
         }
       }()

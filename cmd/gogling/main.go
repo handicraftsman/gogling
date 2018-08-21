@@ -22,7 +22,7 @@ var StdoutFile = os.NewFile(uintptr(syscall.Stdout), "stdout")
 func main() {
 	ai := &AppInfo{
 		Name:       "Gogling",
-		Version:    "0.0.2-pre1",
+		Version:    "0.0.2-pre2",
 		Done:       make(chan bool),
 		ConfigFile: "./config.json",
 		Config:     nil,
