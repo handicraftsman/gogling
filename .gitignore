@@ -1,5 +1,5 @@
-./gogling
-./goglingApiGenerator
+gogling
+goglingApiGenerator
 lib/
 gostdlib/
 packages.sh
