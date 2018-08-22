@@ -35,5 +35,5 @@ Then you need to build generated bindings by running `build-gostdlib.sh`.
 
 You'll find built standard library in the `lib/` directory.
 
-Note that not all go libraries are compiled for now because some of them cause compilation
-errors when trying to relay them to the lua world. One of them is `math`.
+Note that not all go libraries and symbols are included for now because some of them cause compilation
+errors when trying to relay them to the lua world. You can find list of then in `get-gostdlib.rb`.

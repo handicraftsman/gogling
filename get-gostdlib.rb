@@ -1,5 +1,15 @@
 #!/usr/bin/env ruby
 
+$pkg_ignores = [
+  'hash',
+  'hash/crc64',
+  'encoding'
+]
+
+$symbol_ignores = [
+  ['math', 'MaxUint64']
+]
+
 require 'set'
 
 class Package
@@ -16,16 +26,16 @@ class Package
     @variables = Set.new()
     @info.each do |i|
       if m = /^type (.+?) struct.+$/.match(i)
-        @types.add m[1]
+        @types.add m[1] unless $symbol_ignores.include?([name, m[1]])
       end
       if m = /^func (.+?)\(.*$/.match(i)
-        @functions.add m[1]
+        @functions.add m[1] unless $symbol_ignores.include?([name, m[1]])
       end
       if m = /^const (.+?) =.*$/.match(i)
-        @constants.add m[1]
+        @constants.add m[1] unless $symbol_ignores.include?([name, m[1]])
       end
       if m = /^var (.+?) .*$/.match(i)
-        @variables.add m[1]
+        @variables.add m[1] unless $symbol_ignores.include?([name, m[1]])
       end
     end
   end
@@ -107,6 +117,7 @@ $apifiles.each do |fname|
 end
 
 def add_package(pkg, info)
+  return if $pkg_ignores.include?(pkg)
   $package_names.add pkg
   unless $package_info[pkg]
     $package_info[pkg] = []
